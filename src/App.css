@@ -26,7 +26,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(to right, #ffffff,#f2ff00);
   box-shadow: 0 8px 32px 0 rgba(7, 7, 7, 0.37);
   backdrop-filter: blur(6px);
   position: sticky;
@@ -65,11 +65,9 @@ body {
   text-align: center;
   align-items: center;
   padding: 4rem 1rem;
-  background: url("hero.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100%;
   height: 100vh;
+   background: linear-gradient( #eaff00, #7f1d1d);
 }
 
 .section-1 {

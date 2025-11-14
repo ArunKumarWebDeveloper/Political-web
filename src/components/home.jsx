@@ -132,62 +132,80 @@ const Home = () => {
 
       {/* POPUP FORM */}
       {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup-box">
-            <h2>Register as {role === "volunteer" ? "Volunteer" : "Member"}</h2>
+  <div className="popup-overlay">
+    <div className="popup-box">
+      <h2>Register as {role === "volunteer" ? "Volunteer" : "Member"}</h2>
 
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+      <form onSubmit={handleSubmit}>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+        {/* Full Name */}
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={form.name}
+          onChange={handleChange}
+          required
+        />
 
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
+        {/* Email */}
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
 
-              <input
-                type="text"
-                name="district"
-                placeholder="District"
-                value={form.district}
-                onChange={handleChange}
-                required
-              />
+        {/* Phone Number */}
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
+          value={form.phone}
+          onChange={handleChange}
+          required
+        />
 
-              <textarea
-                name="message"
-                placeholder="Why do you want to join?"
-                value={form.message}
-                onChange={handleChange}
-              ></textarea>
+        {/* District */}
+        <input
+          type="text"
+          name="district"
+          placeholder="District"
+          value={form.district}
+          onChange={handleChange}
+          required
+        />
 
-              <button type="submit">Submit</button>
-              <button className="close-btn" onClick={() => setShowPopup(false)}>
-                Close
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+        {/* Message */}
+        <textarea
+          name="message"
+          placeholder="Why do you want to join?"
+          value={form.message}
+          onChange={handleChange}
+          required
+        ></textarea>
+
+        {/* Hidden Role Field (required by SQL) */}
+        <input
+          type="hidden"
+          name="role"
+          value={role}
+        />
+
+        <button type="submit">Submit</button>
+        <button
+          type="button"
+          className="close-btn"
+          onClick={() => setShowPopup(false)}
+        >
+          Close
+        </button>
+      </form>
+    </div>
+  </div>
+)}
 
       <section className="voice">
         <h3>{data.voiceTitle}</h3>
