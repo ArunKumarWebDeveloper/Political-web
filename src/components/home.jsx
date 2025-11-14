@@ -43,9 +43,48 @@ const Home = () => {
   };
 
   const [lang, setLang] = useState("en");
+  const [showPopup, setShowPopup] = useState(false);
+  const [role, setRole] = useState(""); // volunteer / member
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    district: "",
+    message: "",
+  });
 
   const toggleLang = () => {
     setLang((prev) => (prev === "en" ? "kn" : "en"));
+  };
+
+  const openPopup = (type) => {
+    setRole(type);
+    setShowPopup(true);
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = { ...form, role };
+
+    const res = await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Registration Successful!");
+      setShowPopup(false);
+      setForm({ name: "", email: "", phone: "", district: "", message: "" });
+    } else {
+      alert("Failed to submit. Try again.");
+    }
   };
 
   const data = content[lang];
@@ -59,8 +98,7 @@ const Home = () => {
         </button>
       </header>
 
-      <section className="hero">
-      </section>
+      <section className="hero"></section>
 
       <section className="goals">
         <h3>{data.goalsTitle}</h3>
@@ -71,15 +109,85 @@ const Home = () => {
             </div>
           ))}
         </div>
-           <div className="section-1">
-        <h2>{data.motto}</h2>
-        <p>{data.heroDesc}</p>
-        <div className="btn-group">
-          <button className="volunteer">{data.joinVolunteer}</button>
-          <button className="member-btn">{data.joinMember}</button>
-        </div>
+
+        <div className="section-1">
+          <h2>{data.motto}</h2>
+          <p>{data.heroDesc}</p>
+          <div className="btn-group">
+            <button
+              className="volunteer"
+              onClick={() => openPopup("volunteer")}
+            >
+              {data.joinVolunteer}
+            </button>
+            <button
+              className="member-btn"
+              onClick={() => openPopup("member")}
+            >
+              {data.joinMember}
+            </button>
+          </div>
         </div>
       </section>
+
+      {/* POPUP FORM */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h2>Register as {role === "volunteer" ? "Volunteer" : "Member"}</h2>
+
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone Number"
+                value={form.phone}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="text"
+                name="district"
+                placeholder="District"
+                value={form.district}
+                onChange={handleChange}
+                required
+              />
+
+              <textarea
+                name="message"
+                placeholder="Why do you want to join?"
+                value={form.message}
+                onChange={handleChange}
+              ></textarea>
+
+              <button type="submit">Submit</button>
+              <button className="close-btn" onClick={() => setShowPopup(false)}>
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       <section className="voice">
         <h3>{data.voiceTitle}</h3>

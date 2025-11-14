@@ -134,9 +134,8 @@ body {
   transform: scale(1.05);
 }
 
-/* 🎯 Goals Section */
 .goals {
-   background: linear-gradient(135deg, #1e3a8a, #000, #7f1d1d);
+   background: linear-gradient(135deg, #e4eb06, #000, #7f1d1d);
   padding: 4rem 1rem;
   text-align: center;
   width: 100%;
@@ -171,18 +170,17 @@ body {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
-/* 🎤 Voice Section */
 .voice {
   text-align: center;
   padding: 4rem 1rem;
-  background: linear-gradient(to right, #1e3a8a, #7f1d1d);
+  background: linear-gradient(135deg, #fffb00, #000, #7f1d1d);
  height:70vh;
   width: 100%;
 }
 
 .voice h3 {
   font-size: 2rem;
-  color: #22d3ee;
+  color: #f5f505;
   margin-bottom: 1.2rem;
 }
 
@@ -212,4 +210,61 @@ footer p {
 footer p:first-child {
   font-weight: 600;
   color: #facc15;
+}
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: white;
+  padding: 25px;
+  width: 680px;
+  border-radius: 12px;
+  color: black;
+}
+
+.popup-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 50px;
+}
+
+.popup-box input,
+.popup-box textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.popup-box button {
+  display: flex;
+ justify-content: center;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #0245fe;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+    width: 25%;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: #e11212 !important;
+  width: 50%;
+  font-weight: 600;
 }
